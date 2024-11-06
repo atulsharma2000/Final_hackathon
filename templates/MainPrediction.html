@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px; /* Set a max-width for better readability */
+            margin: auto;
+            overflow: hidden;
+            padding: 20px; /* Add padding for aesthetics */
+        }
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #35424a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #46a049; /* Change to a more vibrant green */
+        }
+
+        .radio-group {
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 15px; 
+        }
+        
+        .radio-group label {
+            margin-right: 15px; 
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px; /* Add padding for result display */
+            background-color: #e9ecef; /* Light background for visibility */
+            border-radius: 5px; /* Rounded corners */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Prediction Page</h1>
+    </header>
+    <div class="container">
+        <form id="prediction-form" action="/predict" method="POST" aria-label="Prediction Form">
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required min="0">
+
+            <label for="category">Select Category:</label>
+            <select id="category" name="category" required>
+                <option value="">--Select a Category--</option>
+                <option value="A">Category A</option>
+                <option value="B">Category B</option>
+                <option value="C">Category C</option>
+                <!-- Additional categories can be added here -->
+            </select>
+
+            <fieldset class="radio-group">
+                <legend>Gender:</legend>
+                <input type="radio" id="male" name="gender" value="Male" required>
+                <label for="male">Male</label>
+
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label>
+
+             </fieldset>
+
+             <fieldset class="radio-group">
+                <legend>Frequency:</legend>
+                <input type="radio" id="male" name="gender" value="Male" required>
+                <label for="male">Monthly</label>
+
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label>
+
+             </fieldset>
+
+
+             <label for="marks">Total Marks:</label>
+             <input type="number" id="marks" name="marks" placeholder="Enter your marks" required min="0">
+
+             <!-- Submit Button -->
+             <input type="submit" value="Predict">
+         </form>
+
+         <!-- Result Display Area -->
+         {% if prediction %}
+         <div class="result">
+             Predicted Potential Customer (if given customer will opt for top-up loan): {{ prediction }}
+         </div>
+         {% endif %}
+    </div>
+</body>
+</html>
